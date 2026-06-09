@@ -18,3 +18,13 @@ New machine / restore after a wipe:
 git clone <your-remote> ~/.claude/skills
 ```
 Edit the live file → commit → push. That's it. No second copy to keep in sync.
+
+
+## Standalone — zero plugins required
+`finalize-task` runs with **no plugins installed**. Stages 1–2 use `superpowers:requesting-code-review`
+and the `code-simplifier` agent **if present**, otherwise fall back to bundled prompts
+(`finalize-task/code-reviewer.md`, `finalize-task/code-simplifier.md`). Stage 3 needs nothing.
+
+## Credits / third-party
+- `finalize-task/code-reviewer.md` — adapted from **superpowers** (MIT, © 2025 Jesse Vincent). See `licenses/superpowers-MIT.txt`.
+- `finalize-task/code-simplifier.md` — adapted from the **code-simplifier** plugin (Apache-2.0, © Anthropic). See `licenses/code-simplifier-APACHE.txt`.

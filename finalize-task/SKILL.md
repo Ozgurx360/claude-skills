@@ -18,10 +18,14 @@ Skip only for a trivial one-line change with no downstream docs.
 ## The three stages — run in order, do not skip one
 
 ### 1. Code review
-**REQUIRED: invoke `superpowers:requesting-code-review`.** Dispatch reviewer subagent(s) on the work product. Fix **Critical** and **Important** findings before continuing; note Minor.
+Dispatch reviewer subagent(s) on the work product; fix **Critical** and **Important** before continuing, note Minor.
+- **If installed:** invoke `superpowers:requesting-code-review`.
+- **Else (standalone):** dispatch a general-purpose reviewer subagent using the bundled **`code-reviewer.md`** in this folder.
 
 ### 2. Simplify
-Dispatch the **code-simplifier** agent (Agent tool, `subagent_type: code-simplifier:code-simplifier`) on the **recently-changed** code only. Apply the behavior-preserving simplifications it finds (dead code, redundancy, needless complexity). Skip anything that changes behavior or needs a judgment call — surface those instead of applying them.
+On the **recently-changed** code only, apply behavior-preserving simplifications (dead code, redundancy, needless complexity); skip anything that changes behavior or needs a judgment call — surface those instead.
+- **If installed:** dispatch the `code-simplifier` agent (`subagent_type: code-simplifier:code-simplifier`).
+- **Else (standalone):** dispatch a general-purpose subagent using the bundled **`code-simplifier.md`** in this folder.
 
 ### 3. Cross-document consistency — WITH authority resolution
 Fan out **parallel subagents, one per consistency dimension**, across ALL the work product — code/config, notes/memory, strategy/spec docs, artifacts, handoffs. Each agent does TWO things, not one:
