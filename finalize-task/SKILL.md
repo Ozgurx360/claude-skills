@@ -21,6 +21,7 @@ Skip only for a trivial one-line change with no downstream docs.
 Dispatch reviewer subagent(s) on the work product; fix **Critical** and **Important** before continuing, note Minor.
 - **If installed:** invoke `superpowers:requesting-code-review`.
 - **Else (standalone):** dispatch a general-purpose reviewer subagent using the bundled **`code-reviewer.md`** in this folder.
+- Tell the reviewer to **flag, not bless,** any value that's duplicated/disputed across docs (e.g. a hardcoded constant) — those are settled in stage 3, not here.
 
 ### 2. Simplify
 On the **recently-changed** code only, apply behavior-preserving simplifications (dead code, redundancy, needless complexity); skip anything that changes behavior or needs a judgment call — surface those instead.
@@ -28,7 +29,7 @@ On the **recently-changed** code only, apply behavior-preserving simplifications
 - **Else (standalone):** dispatch a general-purpose subagent using the bundled **`code-simplifier.md`** in this folder.
 
 ### 3. Cross-document consistency — WITH authority resolution
-Fan out **parallel subagents, one per consistency dimension**, across ALL the work product — code/config, notes/memory, strategy/spec docs, artifacts, handoffs. Each agent does TWO things, not one:
+Fan out **parallel general-purpose subagents, one per consistency dimension** (a *dimension* = one independent topic or contradiction cluster — e.g. "the fee value", "the seat limit"), across ALL the work product — code/config, notes/memory, strategy/spec docs, artifacts, handoffs. Each agent does TWO things, not one:
 
 1. **Find** where documents disagree — values, dates, verdicts, versions, names, numbers. A disputed value hardcoded in a **code/config file** is in scope too, not just prose docs.
 2. **Decide which is CURRENT.** Do not merely report the clash. Rank by authority:
